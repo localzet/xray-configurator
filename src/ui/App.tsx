@@ -1801,26 +1801,27 @@ function ProtocolSettingsEditor({
     const hasClients = definition.fields.some((field) => field.key === 'clients');
     const hasFallbacks = definition.fields.some((field) => field.key === 'fallbacks');
     const fields = definition.fields.filter((field) => field.key !== 'clients' && field.key !== 'fallbacks');
+    const settings = endpoint.settings ?? {};
 
     return (
         <Stack>
             {hasClients && (
                 <ClientsEditor
-                    clients={(Array.isArray(endpoint.settings.clients) ? endpoint.settings.clients : []) as RecordValue[]}
+                    clients={(Array.isArray(settings.clients) ? settings.clients : []) as RecordValue[]}
                     protocol={endpoint.protocol}
                     language={language}
-                    onChange={(clients) => onChange({...endpoint.settings, clients})}
+                    onChange={(clients) => onChange({...settings, clients})}
                 />
             )}
             {hasFallbacks && (
                 <FallbacksEditor
-                    fallbacks={(Array.isArray(endpoint.settings.fallbacks) ? endpoint.settings.fallbacks : []) as RecordValue[]}
+                    fallbacks={(Array.isArray(settings.fallbacks) ? settings.fallbacks : []) as RecordValue[]}
                     language={language}
-                    onChange={(fallbacks) => onChange({...endpoint.settings, fallbacks})}
+                    onChange={(fallbacks) => onChange({...settings, fallbacks})}
                 />
             )}
             <FieldGrid fields={fields} language={language} query={query} advancedMode={advancedMode}
-                       value={endpoint.settings} onChange={onChange}/>
+                       value={settings} onChange={onChange}/>
         </Stack>
     );
 }

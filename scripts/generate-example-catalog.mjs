@@ -1,18 +1,19 @@
 import {mkdir, readdir, readFile, writeFile} from 'node:fs/promises';
-import {extname, relative} from 'node:path';
+import {dirname, extname, relative} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {parse} from 'jsonc-parser';
 
-const root = new URL('../', import.meta.url);
-const examplesDir = new URL('../examples/', import.meta.url);
-const outputFile = new URL('../src/domain/exampleCatalog.generated.ts', import.meta.url);
+const scriptDir = dirname(fileURLToPath(import.meta.url));
+const root = dirname(scriptDir);
+const examplesDir = `${root}/examples`;
+const outputFile = `${root}/src/domain/exampleCatalog.generated.ts`;
 
 const files = await collectFiles(examplesDir);
 const items = [];
 
-for (const fileUrl of files) {
-    const raw = await readFile(fileUrl, 'utf8');
-    const path = normalizePath(relative(fileURLToPath(root), fileURLToPath(fileUrl)));
+for (const filePath of files) {
+    const raw = await readFile(filePath, 'utf8');
+    const path = normalizePath(relative(root, filePath));
     const parsed = parse(raw, undefined, {allowTrailingComma: true, disallowComments: false});
     const config = parsed && typeof parsed === 'object' ? parsed : undefined;
     const protocols = unique(findValues(config, 'protocol').filter(isString));
@@ -37,7 +38,7 @@ for (const fileUrl of files) {
 
 items.sort((a, b) => a.path.localeCompare(b.path));
 
-await mkdir(new URL('../src/domain/', import.meta.url), {recursive: true});
+await mkdir(`${root}/src/domain`, {recursive: true});
 await writeFile(
     outputFile,
     `export type ExampleConfig = Record<string, unknown>;\n\nexport interface ExampleCatalogItem {\n  id: string;\n  title: string;\n  path: string;\n  role: 'server' | 'client' | 'mixed' | 'other';\n  protocols: string[];\n  transports: string[];\n  securities: string[];\n  features: string[];\n  raw: string;\n  config: ExampleConfig | null;\n}\n\nexport const exampleCatalog = ${JSON.stringify(items, null, 2)} satisfies ExampleCatalogItem[];\n`,
@@ -46,19 +47,19 @@ await writeFile(
 
 console.log(`Generated ${items.length} example catalog entries.`);
 
-async function collectFiles(dirUrl) {
+async function collectFiles(dirPath) {
     let entries;
     try {
-        entries = await readdir(dirUrl, {withFileTypes: true});
+        entries = await readdir(dirPath, {withFileTypes: true});
     } catch {
         return [];
     }
 
     const nested = await Promise.all(
         entries.map((entry) => {
-            const childUrl = new URL(`${entry.name}${entry.isDirectory() ? '/' : ''}`, dirUrl);
-            if (entry.isDirectory()) return collectFiles(childUrl);
-            return ['.json', '.jsonc'].includes(extname(entry.name).toLowerCase()) ? [childUrl] : [];
+            const childPath = `${dirPath}/${entry.name}`;
+            if (entry.isDirectory()) return collectFiles(childPath);
+            return ['.json', '.jsonc'].includes(extname(entry.name).toLowerCase()) ? [childPath] : [];
         }),
     );
 

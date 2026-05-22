@@ -1,11 +1,13 @@
 # Xray Configurator
 
-Static server-side JSON configurator for Xray-core. The app is designed to run on GitHub Pages and keeps all work in the browser: no backend, no telemetry, no remote validation.
+Static server-side JSON configurator for Xray-core. The app is designed to run on GitHub Pages and keeps all work in the
+browser: no backend, no telemetry, no remote validation.
 
 ## Features
 
 - Protocol-aware server config builder for inbounds, outbounds, stream settings, TLS, REALITY and socket options.
-- Global sections for `log`, `dns`, `routing`, `policy`, `api`, `metrics`, `fakeDns`, `observatory`, `burstObservatory`, `geodata` and `version`.
+- Global sections for `log`, `dns`, `routing`, `policy`, `api`, `metrics`, `fakeDns`, `observatory`, `burstObservatory`,
+  `geodata` and `version`.
 - Nested editors for common high-friction structures: inbound clients, DNS servers and routing rules.
 - Import existing JSON, edit it visually or as raw JSON, then export a clean config.
 - Built-in presets for common server deployments.
@@ -42,7 +44,8 @@ XRAY_BIN=/usr/local/bin/xray npm run validate:xray
 
 ## Deployment
 
-The repository includes `.github/workflows/deploy.yml`. Enable GitHub Pages in repository settings and select GitHub Actions as the source. Every push to `main` builds and publishes `dist`.
+The repository includes `.github/workflows/deploy.yml`. Enable GitHub Pages in repository settings and select GitHub
+Actions as the source. Every push to `main` builds and publishes `dist`.
 
 ## Examples
 
@@ -62,7 +65,9 @@ git submodule update --init --recursive
 
 ## Coverage Notes
 
-Xray-core evolves quickly and some fields are only discoverable from `infra/conf` source structs. The visual UI covers the most common server-side and advanced fields, while raw JSON inputs remain available for experimental, newly added or rarely used options. For strict runtime validation, export the JSON and run:
+Xray-core evolves quickly and some fields are only discoverable from `infra/conf` source structs. The visual UI covers
+the most common server-side and advanced fields, while raw JSON inputs remain available for experimental, newly added or
+rarely used options. For strict runtime validation, export the JSON and run:
 
 ```bash
 xray run -test -config xray-server-config.json

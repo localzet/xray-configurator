@@ -4515,9 +4515,9 @@ export const exampleCatalog = [
         }
     },
     {
-        "id": "examples-trojan-grpc-caddy2-ef-bc-8fnginx-client-jsonc",
-        "title": "Trojan-gRPC-Caddy2%EF%BC%8FNginx/client",
-        "path": "examples/Trojan-gRPC-Caddy2%EF%BC%8FNginx/client.jsonc",
+        "id": "examples-trojan-grpc-caddy2-nginx-client-jsonc",
+        "title": "Trojan-gRPC-Caddy2／Nginx/client",
+        "path": "examples/Trojan-gRPC-Caddy2／Nginx/client.jsonc",
         "role": "client",
         "protocols": [
             "socks",
@@ -4599,9 +4599,9 @@ export const exampleCatalog = [
         }
     },
     {
-        "id": "examples-trojan-grpc-caddy2-ef-bc-8fnginx-server-jsonc",
-        "title": "Trojan-gRPC-Caddy2%EF%BC%8FNginx/server",
-        "path": "examples/Trojan-gRPC-Caddy2%EF%BC%8FNginx/server.jsonc",
+        "id": "examples-trojan-grpc-caddy2-nginx-server-jsonc",
+        "title": "Trojan-gRPC-Caddy2／Nginx/server",
+        "path": "examples/Trojan-gRPC-Caddy2／Nginx/server.jsonc",
         "role": "server",
         "protocols": [
             "trojan",
@@ -4666,9 +4666,9 @@ export const exampleCatalog = [
         }
     },
     {
-        "id": "examples-trojan-tcp-tls-20-minimal-config-client-jsonc",
-        "title": "Trojan-TCP-TLS%20(minimal)/config_client",
-        "path": "examples/Trojan-TCP-TLS%20(minimal)/config_client.jsonc",
+        "id": "examples-trojan-tcp-tls-minimal-config-client-jsonc",
+        "title": "Trojan-TCP-TLS (minimal)/config_client",
+        "path": "examples/Trojan-TCP-TLS (minimal)/config_client.jsonc",
         "role": "client",
         "protocols": [
             "socks",
@@ -4717,9 +4717,9 @@ export const exampleCatalog = [
         }
     },
     {
-        "id": "examples-trojan-tcp-tls-20-minimal-config-server-jsonc",
-        "title": "Trojan-TCP-TLS%20(minimal)/config_server",
-        "path": "examples/Trojan-TCP-TLS%20(minimal)/config_server.jsonc",
+        "id": "examples-trojan-tcp-tls-minimal-config-server-jsonc",
+        "title": "Trojan-TCP-TLS (minimal)/config_server",
+        "path": "examples/Trojan-TCP-TLS (minimal)/config_server.jsonc",
         "role": "server",
         "protocols": [
             "trojan",
@@ -5761,9 +5761,9 @@ export const exampleCatalog = [
         }
     },
     {
-        "id": "examples-vless-tcp-reality-20-without-20being-20stolen-config-client-jsonc",
-        "title": "VLESS-TCP-REALITY%20(without%20being%20stolen)/config_client",
-        "path": "examples/VLESS-TCP-REALITY%20(without%20being%20stolen)/config_client.jsonc",
+        "id": "examples-vless-tcp-reality-without-being-stolen-config-client-jsonc",
+        "title": "VLESS-TCP-REALITY (without being stolen)/config_client",
+        "path": "examples/VLESS-TCP-REALITY (without being stolen)/config_client.jsonc",
         "role": "client",
         "protocols": [
             "socks",
@@ -5828,9 +5828,9 @@ export const exampleCatalog = [
         }
     },
     {
-        "id": "examples-vless-tcp-reality-20-without-20being-20stolen-config-server-jsonc",
-        "title": "VLESS-TCP-REALITY%20(without%20being%20stolen)/config_server",
-        "path": "examples/VLESS-TCP-REALITY%20(without%20being%20stolen)/config_server.jsonc",
+        "id": "examples-vless-tcp-reality-without-being-stolen-config-server-jsonc",
+        "title": "VLESS-TCP-REALITY (without being stolen)/config_server",
+        "path": "examples/VLESS-TCP-REALITY (without being stolen)/config_server.jsonc",
         "role": "server",
         "protocols": [
             "dokodemo-door",
@@ -5942,9 +5942,253 @@ export const exampleCatalog = [
         }
     },
     {
-        "id": "examples-vless-tcp-tls-proxy-20protocol-config-client-jsonc",
-        "title": "VLESS-TCP-TLS-proxy%20protocol/config_client",
-        "path": "examples/VLESS-TCP-TLS-proxy%20protocol/config_client.jsonc",
+        "id": "examples-vless-tcp-tls-maximal-by-rprx-config-client-jsonc",
+        "title": "VLESS-TCP-TLS (maximal by rprx)/config_client",
+        "path": "examples/VLESS-TCP-TLS (maximal by rprx)/config_client.jsonc",
+        "role": "client",
+        "protocols": [
+            "socks",
+            "vless"
+        ],
+        "transports": [
+            "tcp"
+        ],
+        "securities": [
+            "tls"
+        ],
+        "features": [
+            "TLS"
+        ],
+        "raw": "{\r\n    \"log\": {\r\n        \"loglevel\": \"warning\"\r\n    },\r\n    \"inbounds\": [\r\n        {\r\n            \"port\": 10800,\r\n            \"listen\": \"127.0.0.1\",\r\n            \"protocol\": \"socks\",\r\n            \"settings\": {\r\n                \"udp\": true\r\n            }\r\n        }\r\n    ],\r\n    \"outbounds\": [\r\n        {\r\n            \"protocol\": \"vless\",\r\n            \"settings\": {\r\n                \"address\": \"example.com\", // 换成你的域名或服务器 IP（发起请求时无需解析域名了）\r\n                \"port\": 443,\r\n                \"id\": \"\", // 填写你的 UUID\r\n                \"encryption\": \"none\",\r\n                \"level\": 0\r\n            },\r\n            \"streamSettings\": {\r\n                \"network\": \"tcp\",\r\n                \"security\": \"tls\",\r\n                \"tlsSettings\": {\r\n                    \"serverName\": \"example.com\" // 换成你的域名\r\n                }\r\n            }\r\n        }\r\n    ]\r\n}\r\n",
+        "config": {
+            "log": {
+                "loglevel": "warning"
+            },
+            "inbounds": [
+                {
+                    "port": 10800,
+                    "listen": "127.0.0.1",
+                    "protocol": "socks",
+                    "settings": {
+                        "udp": true
+                    }
+                }
+            ],
+            "outbounds": [
+                {
+                    "protocol": "vless",
+                    "settings": {
+                        "address": "example.com",
+                        "port": 443,
+                        "id": "",
+                        "encryption": "none",
+                        "level": 0
+                    },
+                    "streamSettings": {
+                        "network": "tcp",
+                        "security": "tls",
+                        "tlsSettings": {
+                            "serverName": "example.com"
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "id": "examples-vless-tcp-tls-maximal-by-rprx-config-server-jsonc",
+        "title": "VLESS-TCP-TLS (maximal by rprx)/config_server",
+        "path": "examples/VLESS-TCP-TLS (maximal by rprx)/config_server.jsonc",
+        "role": "server",
+        "protocols": [
+            "vless",
+            "freedom"
+        ],
+        "transports": [
+            "tcp"
+        ],
+        "securities": [
+            "tls"
+        ],
+        "features": [
+            "TLS",
+            "fallbacks"
+        ],
+        "raw": "{\r\n    \"log\": {\r\n        \"loglevel\": \"warning\"\r\n    },\r\n    \"inbounds\": [\r\n        {\r\n            \"port\": 443,\r\n            \"protocol\": \"vless\",\r\n            \"settings\": {\r\n                \"clients\": [\r\n                    {\r\n                        \"id\": \"\", // 填写你的 UUID\r\n                        \"level\": 0,\r\n                        \"email\": \"love@example.com\"\r\n                    }\r\n                ],\r\n                \"decryption\": \"none\",\r\n                \"fallbacks\": [\r\n                    {\r\n                        \"dest\": \"/dev/shm/default.sock\",\r\n                        \"xver\": 1\r\n                    },\r\n                    {\r\n                        \"alpn\": \"h2\",\r\n                        \"dest\": \"/dev/shm/h2c.sock\",\r\n                        \"xver\": 1\r\n                    }\r\n                ]\r\n            },\r\n            \"streamSettings\": {\r\n                \"network\": \"tcp\",\r\n                \"security\": \"tls\",\r\n                \"tlsSettings\": {\r\n                    \"alpn\": [\r\n                        \"h2\",\r\n                        \"http/1.1\"\r\n                    ],\r\n                    \"certificates\": [\r\n                        {\r\n                            \"certificateFile\": \"/path/to/fullchain.crt\", // 换成你的证书，绝对路径\r\n                            \"keyFile\": \"/path/to/private.key\" // 换成你的私钥，绝对路径\r\n                        }\r\n                    ]\r\n                }\r\n            }\r\n        }\r\n    ],\r\n    \"outbounds\": [\r\n        {\r\n            \"protocol\": \"freedom\"\r\n        }\r\n    ]\r\n}",
+        "config": {
+            "log": {
+                "loglevel": "warning"
+            },
+            "inbounds": [
+                {
+                    "port": 443,
+                    "protocol": "vless",
+                    "settings": {
+                        "clients": [
+                            {
+                                "id": "",
+                                "level": 0,
+                                "email": "love@example.com"
+                            }
+                        ],
+                        "decryption": "none",
+                        "fallbacks": [
+                            {
+                                "dest": "/dev/shm/default.sock",
+                                "xver": 1
+                            },
+                            {
+                                "alpn": "h2",
+                                "dest": "/dev/shm/h2c.sock",
+                                "xver": 1
+                            }
+                        ]
+                    },
+                    "streamSettings": {
+                        "network": "tcp",
+                        "security": "tls",
+                        "tlsSettings": {
+                            "alpn": [
+                                "h2",
+                                "http/1.1"
+                            ],
+                            "certificates": [
+                                {
+                                    "certificateFile": "/path/to/fullchain.crt",
+                                    "keyFile": "/path/to/private.key"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ],
+            "outbounds": [
+                {
+                    "protocol": "freedom"
+                }
+            ]
+        }
+    },
+    {
+        "id": "examples-vless-tcp-tls-minimal-by-rprx-config-client-jsonc",
+        "title": "VLESS-TCP-TLS (minimal by rprx)/config_client",
+        "path": "examples/VLESS-TCP-TLS (minimal by rprx)/config_client.jsonc",
+        "role": "client",
+        "protocols": [
+            "socks",
+            "vless"
+        ],
+        "transports": [
+            "tcp"
+        ],
+        "securities": [
+            "tls"
+        ],
+        "features": [],
+        "raw": "{\r\n    \"log\": {\r\n        \"loglevel\": \"warning\"\r\n    },\r\n    \"inbounds\": [\r\n        {\r\n            \"port\": 10800,\r\n            \"listen\": \"127.0.0.1\",\r\n            \"protocol\": \"socks\",\r\n            \"settings\": {\r\n                \"udp\": true\r\n            }\r\n        }\r\n    ],\r\n    \"outbounds\": [\r\n        {\r\n            \"protocol\": \"vless\",\r\n            \"settings\": {\r\n                \"address\": \"example.com\", // 换成你的域名\r\n                \"port\": 443,\r\n                \"id\": \"\", // 填写你的 UUID\r\n                \"encryption\": \"none\",\r\n                \"level\": 0\r\n            },\r\n            \"streamSettings\": {\r\n                \"network\": \"tcp\",\r\n                \"security\": \"tls\"\r\n            }\r\n        }\r\n    ]\r\n}\r\n",
+        "config": {
+            "log": {
+                "loglevel": "warning"
+            },
+            "inbounds": [
+                {
+                    "port": 10800,
+                    "listen": "127.0.0.1",
+                    "protocol": "socks",
+                    "settings": {
+                        "udp": true
+                    }
+                }
+            ],
+            "outbounds": [
+                {
+                    "protocol": "vless",
+                    "settings": {
+                        "address": "example.com",
+                        "port": 443,
+                        "id": "",
+                        "encryption": "none",
+                        "level": 0
+                    },
+                    "streamSettings": {
+                        "network": "tcp",
+                        "security": "tls"
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "id": "examples-vless-tcp-tls-minimal-by-rprx-config-server-jsonc",
+        "title": "VLESS-TCP-TLS (minimal by rprx)/config_server",
+        "path": "examples/VLESS-TCP-TLS (minimal by rprx)/config_server.jsonc",
+        "role": "server",
+        "protocols": [
+            "vless",
+            "freedom"
+        ],
+        "transports": [
+            "tcp"
+        ],
+        "securities": [
+            "tls"
+        ],
+        "features": [
+            "TLS",
+            "fallbacks"
+        ],
+        "raw": "{\r\n    \"log\": {\r\n        \"loglevel\": \"warning\"\r\n    },\r\n    \"inbounds\": [\r\n        {\r\n            \"port\": 443,\r\n            \"protocol\": \"vless\",\r\n            \"settings\": {\r\n                \"clients\": [\r\n                    {\r\n                        \"id\": \"\", // 填写你的 UUID\r\n                        \"level\": 0,\r\n                        \"email\": \"love@example.com\"\r\n                    }\r\n                ],\r\n                \"decryption\": \"none\",\r\n                \"fallbacks\": [\r\n                    {\r\n                        \"dest\": 80\r\n                    }\r\n                ]\r\n            },\r\n            \"streamSettings\": {\r\n                \"network\": \"tcp\",\r\n                \"security\": \"tls\",\r\n                \"tlsSettings\": {\r\n                    \"alpn\": [\r\n                        \"http/1.1\"\r\n                    ],\r\n                    \"certificates\": [\r\n                        {\r\n                            \"certificateFile\": \"/path/to/fullchain.crt\", // 换成你的证书，绝对路径\r\n                            \"keyFile\": \"/path/to/private.key\" // 换成你的私钥，绝对路径\r\n                        }\r\n                    ]\r\n                }\r\n            }\r\n        }\r\n    ],\r\n    \"outbounds\": [\r\n        {\r\n            \"protocol\": \"freedom\"\r\n        }\r\n    ]\r\n}",
+        "config": {
+            "log": {
+                "loglevel": "warning"
+            },
+            "inbounds": [
+                {
+                    "port": 443,
+                    "protocol": "vless",
+                    "settings": {
+                        "clients": [
+                            {
+                                "id": "",
+                                "level": 0,
+                                "email": "love@example.com"
+                            }
+                        ],
+                        "decryption": "none",
+                        "fallbacks": [
+                            {
+                                "dest": 80
+                            }
+                        ]
+                    },
+                    "streamSettings": {
+                        "network": "tcp",
+                        "security": "tls",
+                        "tlsSettings": {
+                            "alpn": [
+                                "http/1.1"
+                            ],
+                            "certificates": [
+                                {
+                                    "certificateFile": "/path/to/fullchain.crt",
+                                    "keyFile": "/path/to/private.key"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ],
+            "outbounds": [
+                {
+                    "protocol": "freedom"
+                }
+            ]
+        }
+    },
+    {
+        "id": "examples-vless-tcp-tls-proxy-protocol-config-client-jsonc",
+        "title": "VLESS-TCP-TLS-proxy protocol/config_client",
+        "path": "examples/VLESS-TCP-TLS-proxy protocol/config_client.jsonc",
         "role": "client",
         "protocols": [
             "socks",
@@ -6028,9 +6272,9 @@ export const exampleCatalog = [
         }
     },
     {
-        "id": "examples-vless-tcp-tls-proxy-20protocol-config-server-jsonc",
-        "title": "VLESS-TCP-TLS-proxy%20protocol/config_server",
-        "path": "examples/VLESS-TCP-TLS-proxy%20protocol/config_server.jsonc",
+        "id": "examples-vless-tcp-tls-proxy-protocol-config-server-jsonc",
+        "title": "VLESS-TCP-TLS-proxy protocol/config_server",
+        "path": "examples/VLESS-TCP-TLS-proxy protocol/config_server.jsonc",
         "role": "server",
         "protocols": [
             "vless",
@@ -6472,250 +6716,6 @@ export const exampleCatalog = [
                 {
                     "protocol": "freedom",
                     "tag": "direct"
-                }
-            ]
-        }
-    },
-    {
-        "id": "examples-vless-tcp-tls-20-maximal-20by-20rprx-config-client-jsonc",
-        "title": "VLESS-TCP-TLS%20(maximal%20by%20rprx)/config_client",
-        "path": "examples/VLESS-TCP-TLS%20(maximal%20by%20rprx)/config_client.jsonc",
-        "role": "client",
-        "protocols": [
-            "socks",
-            "vless"
-        ],
-        "transports": [
-            "tcp"
-        ],
-        "securities": [
-            "tls"
-        ],
-        "features": [
-            "TLS"
-        ],
-        "raw": "{\r\n    \"log\": {\r\n        \"loglevel\": \"warning\"\r\n    },\r\n    \"inbounds\": [\r\n        {\r\n            \"port\": 10800,\r\n            \"listen\": \"127.0.0.1\",\r\n            \"protocol\": \"socks\",\r\n            \"settings\": {\r\n                \"udp\": true\r\n            }\r\n        }\r\n    ],\r\n    \"outbounds\": [\r\n        {\r\n            \"protocol\": \"vless\",\r\n            \"settings\": {\r\n                \"address\": \"example.com\", // 换成你的域名或服务器 IP（发起请求时无需解析域名了）\r\n                \"port\": 443,\r\n                \"id\": \"\", // 填写你的 UUID\r\n                \"encryption\": \"none\",\r\n                \"level\": 0\r\n            },\r\n            \"streamSettings\": {\r\n                \"network\": \"tcp\",\r\n                \"security\": \"tls\",\r\n                \"tlsSettings\": {\r\n                    \"serverName\": \"example.com\" // 换成你的域名\r\n                }\r\n            }\r\n        }\r\n    ]\r\n}\r\n",
-        "config": {
-            "log": {
-                "loglevel": "warning"
-            },
-            "inbounds": [
-                {
-                    "port": 10800,
-                    "listen": "127.0.0.1",
-                    "protocol": "socks",
-                    "settings": {
-                        "udp": true
-                    }
-                }
-            ],
-            "outbounds": [
-                {
-                    "protocol": "vless",
-                    "settings": {
-                        "address": "example.com",
-                        "port": 443,
-                        "id": "",
-                        "encryption": "none",
-                        "level": 0
-                    },
-                    "streamSettings": {
-                        "network": "tcp",
-                        "security": "tls",
-                        "tlsSettings": {
-                            "serverName": "example.com"
-                        }
-                    }
-                }
-            ]
-        }
-    },
-    {
-        "id": "examples-vless-tcp-tls-20-maximal-20by-20rprx-config-server-jsonc",
-        "title": "VLESS-TCP-TLS%20(maximal%20by%20rprx)/config_server",
-        "path": "examples/VLESS-TCP-TLS%20(maximal%20by%20rprx)/config_server.jsonc",
-        "role": "server",
-        "protocols": [
-            "vless",
-            "freedom"
-        ],
-        "transports": [
-            "tcp"
-        ],
-        "securities": [
-            "tls"
-        ],
-        "features": [
-            "TLS",
-            "fallbacks"
-        ],
-        "raw": "{\r\n    \"log\": {\r\n        \"loglevel\": \"warning\"\r\n    },\r\n    \"inbounds\": [\r\n        {\r\n            \"port\": 443,\r\n            \"protocol\": \"vless\",\r\n            \"settings\": {\r\n                \"clients\": [\r\n                    {\r\n                        \"id\": \"\", // 填写你的 UUID\r\n                        \"level\": 0,\r\n                        \"email\": \"love@example.com\"\r\n                    }\r\n                ],\r\n                \"decryption\": \"none\",\r\n                \"fallbacks\": [\r\n                    {\r\n                        \"dest\": \"/dev/shm/default.sock\",\r\n                        \"xver\": 1\r\n                    },\r\n                    {\r\n                        \"alpn\": \"h2\",\r\n                        \"dest\": \"/dev/shm/h2c.sock\",\r\n                        \"xver\": 1\r\n                    }\r\n                ]\r\n            },\r\n            \"streamSettings\": {\r\n                \"network\": \"tcp\",\r\n                \"security\": \"tls\",\r\n                \"tlsSettings\": {\r\n                    \"alpn\": [\r\n                        \"h2\",\r\n                        \"http/1.1\"\r\n                    ],\r\n                    \"certificates\": [\r\n                        {\r\n                            \"certificateFile\": \"/path/to/fullchain.crt\", // 换成你的证书，绝对路径\r\n                            \"keyFile\": \"/path/to/private.key\" // 换成你的私钥，绝对路径\r\n                        }\r\n                    ]\r\n                }\r\n            }\r\n        }\r\n    ],\r\n    \"outbounds\": [\r\n        {\r\n            \"protocol\": \"freedom\"\r\n        }\r\n    ]\r\n}",
-        "config": {
-            "log": {
-                "loglevel": "warning"
-            },
-            "inbounds": [
-                {
-                    "port": 443,
-                    "protocol": "vless",
-                    "settings": {
-                        "clients": [
-                            {
-                                "id": "",
-                                "level": 0,
-                                "email": "love@example.com"
-                            }
-                        ],
-                        "decryption": "none",
-                        "fallbacks": [
-                            {
-                                "dest": "/dev/shm/default.sock",
-                                "xver": 1
-                            },
-                            {
-                                "alpn": "h2",
-                                "dest": "/dev/shm/h2c.sock",
-                                "xver": 1
-                            }
-                        ]
-                    },
-                    "streamSettings": {
-                        "network": "tcp",
-                        "security": "tls",
-                        "tlsSettings": {
-                            "alpn": [
-                                "h2",
-                                "http/1.1"
-                            ],
-                            "certificates": [
-                                {
-                                    "certificateFile": "/path/to/fullchain.crt",
-                                    "keyFile": "/path/to/private.key"
-                                }
-                            ]
-                        }
-                    }
-                }
-            ],
-            "outbounds": [
-                {
-                    "protocol": "freedom"
-                }
-            ]
-        }
-    },
-    {
-        "id": "examples-vless-tcp-tls-20-minimal-20by-20rprx-config-client-jsonc",
-        "title": "VLESS-TCP-TLS%20(minimal%20by%20rprx)/config_client",
-        "path": "examples/VLESS-TCP-TLS%20(minimal%20by%20rprx)/config_client.jsonc",
-        "role": "client",
-        "protocols": [
-            "socks",
-            "vless"
-        ],
-        "transports": [
-            "tcp"
-        ],
-        "securities": [
-            "tls"
-        ],
-        "features": [],
-        "raw": "{\r\n    \"log\": {\r\n        \"loglevel\": \"warning\"\r\n    },\r\n    \"inbounds\": [\r\n        {\r\n            \"port\": 10800,\r\n            \"listen\": \"127.0.0.1\",\r\n            \"protocol\": \"socks\",\r\n            \"settings\": {\r\n                \"udp\": true\r\n            }\r\n        }\r\n    ],\r\n    \"outbounds\": [\r\n        {\r\n            \"protocol\": \"vless\",\r\n            \"settings\": {\r\n                \"address\": \"example.com\", // 换成你的域名\r\n                \"port\": 443,\r\n                \"id\": \"\", // 填写你的 UUID\r\n                \"encryption\": \"none\",\r\n                \"level\": 0\r\n            },\r\n            \"streamSettings\": {\r\n                \"network\": \"tcp\",\r\n                \"security\": \"tls\"\r\n            }\r\n        }\r\n    ]\r\n}\r\n",
-        "config": {
-            "log": {
-                "loglevel": "warning"
-            },
-            "inbounds": [
-                {
-                    "port": 10800,
-                    "listen": "127.0.0.1",
-                    "protocol": "socks",
-                    "settings": {
-                        "udp": true
-                    }
-                }
-            ],
-            "outbounds": [
-                {
-                    "protocol": "vless",
-                    "settings": {
-                        "address": "example.com",
-                        "port": 443,
-                        "id": "",
-                        "encryption": "none",
-                        "level": 0
-                    },
-                    "streamSettings": {
-                        "network": "tcp",
-                        "security": "tls"
-                    }
-                }
-            ]
-        }
-    },
-    {
-        "id": "examples-vless-tcp-tls-20-minimal-20by-20rprx-config-server-jsonc",
-        "title": "VLESS-TCP-TLS%20(minimal%20by%20rprx)/config_server",
-        "path": "examples/VLESS-TCP-TLS%20(minimal%20by%20rprx)/config_server.jsonc",
-        "role": "server",
-        "protocols": [
-            "vless",
-            "freedom"
-        ],
-        "transports": [
-            "tcp"
-        ],
-        "securities": [
-            "tls"
-        ],
-        "features": [
-            "TLS",
-            "fallbacks"
-        ],
-        "raw": "{\r\n    \"log\": {\r\n        \"loglevel\": \"warning\"\r\n    },\r\n    \"inbounds\": [\r\n        {\r\n            \"port\": 443,\r\n            \"protocol\": \"vless\",\r\n            \"settings\": {\r\n                \"clients\": [\r\n                    {\r\n                        \"id\": \"\", // 填写你的 UUID\r\n                        \"level\": 0,\r\n                        \"email\": \"love@example.com\"\r\n                    }\r\n                ],\r\n                \"decryption\": \"none\",\r\n                \"fallbacks\": [\r\n                    {\r\n                        \"dest\": 80\r\n                    }\r\n                ]\r\n            },\r\n            \"streamSettings\": {\r\n                \"network\": \"tcp\",\r\n                \"security\": \"tls\",\r\n                \"tlsSettings\": {\r\n                    \"alpn\": [\r\n                        \"http/1.1\"\r\n                    ],\r\n                    \"certificates\": [\r\n                        {\r\n                            \"certificateFile\": \"/path/to/fullchain.crt\", // 换成你的证书，绝对路径\r\n                            \"keyFile\": \"/path/to/private.key\" // 换成你的私钥，绝对路径\r\n                        }\r\n                    ]\r\n                }\r\n            }\r\n        }\r\n    ],\r\n    \"outbounds\": [\r\n        {\r\n            \"protocol\": \"freedom\"\r\n        }\r\n    ]\r\n}",
-        "config": {
-            "log": {
-                "loglevel": "warning"
-            },
-            "inbounds": [
-                {
-                    "port": 443,
-                    "protocol": "vless",
-                    "settings": {
-                        "clients": [
-                            {
-                                "id": "",
-                                "level": 0,
-                                "email": "love@example.com"
-                            }
-                        ],
-                        "decryption": "none",
-                        "fallbacks": [
-                            {
-                                "dest": 80
-                            }
-                        ]
-                    },
-                    "streamSettings": {
-                        "network": "tcp",
-                        "security": "tls",
-                        "tlsSettings": {
-                            "alpn": [
-                                "http/1.1"
-                            ],
-                            "certificates": [
-                                {
-                                    "certificateFile": "/path/to/fullchain.crt",
-                                    "keyFile": "/path/to/private.key"
-                                }
-                            ]
-                        }
-                    }
-                }
-            ],
-            "outbounds": [
-                {
-                    "protocol": "freedom"
                 }
             ]
         }

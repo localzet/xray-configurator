@@ -1,5 +1,6 @@
 import {mkdir, readdir, readFile, writeFile} from 'node:fs/promises';
 import {extname, relative} from 'node:path';
+import {fileURLToPath} from 'node:url';
 import {parse} from 'jsonc-parser';
 
 const root = new URL('../', import.meta.url);
@@ -11,7 +12,7 @@ const items = [];
 
 for (const fileUrl of files) {
     const raw = await readFile(fileUrl, 'utf8');
-    const path = normalizePath(relative(root.pathname.slice(1), fileUrl.pathname.slice(1)));
+    const path = normalizePath(relative(fileURLToPath(root), fileURLToPath(fileUrl)));
     const parsed = parse(raw, undefined, {allowTrailingComma: true, disallowComments: false});
     const config = parsed && typeof parsed === 'object' ? parsed : undefined;
     const protocols = unique(findValues(config, 'protocol').filter(isString));
